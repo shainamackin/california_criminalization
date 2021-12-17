@@ -3,8 +3,9 @@ EZAPOP\_data
 Shaina Mackin
 12/16/2021
 
-Import EZAPOP (Easy Access to Juvenile Populations: 1990-2020) data by
-sex for juvenile populations by county for 1990-2020:
+Import EZAPOP (Easy Access to Juvenile Populations: 1990-2020) data.
+
+County level, by sex:
 
 ``` r
 girls_df = read_csv(file = "./data/CAcounty_1990_2020_juvenile_females.csv") 
@@ -148,6 +149,45 @@ girls_data = girls_df %>%
 boys_data = boys_df %>%
   mutate(sex = "male")
 
-ezapop_data = bind_rows(girls_data, boys_data) %>%
+ezapop_sex = bind_rows(girls_data, boys_data) %>%
   select(county, sex, everything())
+```
+
+County level, by age:
+
+``` r
+df_1990 = read_csv(file = "./data/1990.csv") %>% mutate(year = 1990)
+df_1991 = read_csv(file = "./data/1991.csv") %>% mutate(year = 1991)
+df_1992 = read_csv(file = "./data/1992.csv") %>% mutate(year = 1992)
+df_1993 = read_csv(file = "./data/1993.csv") %>% mutate(year = 1993)
+df_1994 = read_csv(file = "./data/1994.csv") %>% mutate(year = 1994)
+df_1995 = read_csv(file = "./data/1995.csv") %>% mutate(year = 1995)
+df_1996 = read_csv(file = "./data/1996.csv") %>% mutate(year = 1996)
+df_1997 = read_csv(file = "./data/1997.csv") %>% mutate(year = 1997)
+df_1998 = read_csv(file = "./data/1998.csv") %>% mutate(year = 1998)
+df_1999 = read_csv(file = "./data/1999.csv") %>% mutate(year = 1999)
+df_2000 = read_csv(file = "./data/2000.csv") %>% mutate(year = 2000)
+df_2001 = read_csv(file = "./data/2001.csv") %>% mutate(year = 2001)
+df_2002 = read_csv(file = "./data/2002.csv") %>% mutate(year = 2002)
+df_2003 = read_csv(file = "./data/2003.csv") %>% mutate(year = 2003)
+df_2004 = read_csv(file = "./data/2004.csv") %>% mutate(year = 2004)
+df_2005 = read_csv(file = "./data/2005.csv") %>% mutate(year = 2005)
+df_2006 = read_csv(file = "./data/2006.csv") %>% mutate(year = 2006)
+df_2007 = read_csv(file = "./data/2007.csv") %>% mutate(year = 2007)
+df_2008 = read_csv(file = "./data/2008.csv") %>% mutate(year = 2008)
+df_2009 = read_csv(file = "./data/2009.csv") %>% mutate(year = 2009)
+df_2010 = read_csv(file = "./data/2010.csv") %>% mutate(year = 2010)
+df_2011 = read_csv(file = "./data/2011.csv") %>% mutate(year = 2011)
+df_2012 = read_csv(file = "./data/2012.csv") %>% mutate(year = 2012)
+df_2013 = read_csv(file = "./data/2013.csv") %>% mutate(year = 2013)
+df_2014 = read_csv(file = "./data/2014.csv") %>% mutate(year = 2014)
+df_2015 = read_csv(file = "./data/2015.csv") %>% mutate(year = 2015)
+df_2016 = read_csv(file = "./data/2016.csv") %>% mutate(year = 2016)
+df_2017 = read_csv(file = "./data/2017.csv") %>% mutate(year = 2017)
+df_2018 = read_csv(file = "./data/2018.csv") %>% mutate(year = 2018)
+df_2019 = read_csv(file = "./data/2019.csv") %>% mutate(year = 2019)
+df_2020 = read_csv(file = "./data/2020.csv") %>% mutate(year = 2020)
+
+ezapop_age = bind_rows(df_1990, df_1991, df_1992, df_1993, df_1994, df_1995, df_1996, df_1997, df_1998, df_1999, df_2000, df_2001, df_2002, df_2003, df_2004, df_2005, df_2006, df_2007, df_2008, df_2009, df_2010, df_2011, df_2012, df_2013, df_2014, df_2015, df_2016, df_2017, df_2018, df_2019, df_2020) %>%
+  select(county, year, everything())
 ```
