@@ -21,3 +21,14 @@ girls_df %>% knitr::kable()
 boys_df %>% knitr::kable()
 ```
 
+```{r}
+girls_data = girls_df %>%
+  mutate(sex = "female")
+
+boys_data = boys_df %>%
+  mutate(sex = "male")
+
+ezapop_data = bind_rows(girls_data, boys_data) %>%
+  select(county, sex, everything())
+```
+
