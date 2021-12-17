@@ -1,0 +1,23 @@
+---
+title: "EZAPOP_data"
+author: "Shaina Mackin"
+date: "12/16/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+```
+
+Import EZAPOP (Easy Access to Juvenile Populations: 1990-2020) data by sex for juvenile populations by county for 1990-2020:
+```{r import, warning = FALSE, message = FALSE}
+girls_df = read_csv(file = "./data/CAcounty_1990_2020_juvenile_females.csv") 
+boys_df = read_csv(file = "./data/CAcounty_1990_2020_juvenile_males.csv") 
+
+girls_df %>% knitr::kable()
+boys_df %>% knitr::kable()
+```
+
