@@ -1,0 +1,24 @@
+---
+title: "Census_data"
+author: "Shaina Mackin"
+date: "12/17/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(dplyr)
+library(readxl)
+```
+
+Import US Census American Community Survey data: 
+
+```{r import, warning = FALSE, message = FALSE}
+education_df = read_excel(path = "./data/ACS_Education_2019.xlsx", sheet = 2) 
+poverty_df = read_excel(path = "./data/ACS_Poverty_2019.xlsx")
+disability_df = read_csv(file = "./data/ACS_Disability_2019.xlsx") 
+insurance_df = read_csv(file = "./data/ACS_Insurance_2019.xlsx")
+birth_df = read_csv(file = "./data/ACS_Birth_2019.xlsx")
+```
+
