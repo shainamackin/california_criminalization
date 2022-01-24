@@ -16,7 +16,7 @@ Import US Census American Community Survey data:
 
 ```{r import, warning = FALSE, message = FALSE}
 education_df = read_excel(path = "./data/ACS_Education_2019.xlsx", sheet = 2) 
-poverty_df = read_excel(path = "./data/ACS_Poverty_2019.xlsx")
+poverty_df = read_excel(path = "./data/ACS_Poverty_2019.xlsx", sheet = 2)
 disability_df = read_csv(file = "./data/ACS_Disability_2019.xlsx") 
 insurance_df = read_csv(file = "./data/ACS_Insurance_2019.xlsx")
 birth_df = read_csv(file = "./data/ACS_Birth_2019.xlsx")
