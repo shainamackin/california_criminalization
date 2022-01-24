@@ -74,3 +74,4 @@ ezapop_age = bind_rows(df_1990, df_1991, df_1992, df_1993, df_1994, df_1995, df_
 write.csv(ezapop_age,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/ezapop_age.csv", row.names = FALSE)
 ```
 
+##merge on fips codes for age and sex datasets 

@@ -174,10 +174,11 @@ pre code {
 
 <p>Import US Census American Community Survey data:</p>
 <pre class="r"><code>education_df = read_excel(path = &quot;./data/ACS_Education_2019.xlsx&quot;, sheet = 2) 
-poverty_df = read_excel(path = &quot;./data/ACS_Poverty_2019.xlsx&quot;)
+poverty_df = read_excel(path = &quot;./data/ACS_Poverty_2019.xlsx&quot;, sheet = 2)
 disability_df = read_csv(file = &quot;./data/ACS_Disability_2019.xlsx&quot;) 
 insurance_df = read_csv(file = &quot;./data/ACS_Insurance_2019.xlsx&quot;)
 birth_df = read_csv(file = &quot;./data/ACS_Birth_2019.xlsx&quot;)</code></pre>
+<p>##split , California from county column values ##merge on fips codes for all 5 dfs, write to new csvs</p>
 
 
 

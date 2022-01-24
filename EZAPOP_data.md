@@ -151,6 +151,8 @@ boys_data = boys_df %>%
 
 ezapop_sex = bind_rows(girls_data, boys_data) %>%
   select(county, sex, everything())
+
+write.csv(ezapop_sex,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/ezapop_sex.csv", row.names = FALSE)
 ```
 
 County level, by age:
@@ -190,4 +192,8 @@ df_2020 = read_csv(file = "./data/2020.csv") %>% mutate(year = 2020)
 
 ezapop_age = bind_rows(df_1990, df_1991, df_1992, df_1993, df_1994, df_1995, df_1996, df_1997, df_1998, df_1999, df_2000, df_2001, df_2002, df_2003, df_2004, df_2005, df_2006, df_2007, df_2008, df_2009, df_2010, df_2011, df_2012, df_2013, df_2014, df_2015, df_2016, df_2017, df_2018, df_2019, df_2020) %>%
   select(county, year, everything())
+
+write.csv(ezapop_age,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/ezapop_age.csv", row.names = FALSE)
 ```
+
+\#\#merge on fips codes for age and sex datasets
