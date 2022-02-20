@@ -20,8 +20,18 @@ poverty_df = read_excel(path = "./data/ACS_Poverty_2019.xlsx", sheet = 2)
 disability_df = read_excel(path = "./data/ACS_Disability_2019.xlsx", sheet = 2) 
 insurance_df = read_excel(path = "./data/ACS_Insurance_2019.xlsx", sheet = 2)
 birth_df = read_excel(path = "./data/ACS_Birth_2019.xlsx", sheet = 2)
+
+write.csv(education_df,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/acs_education_2019.csv", row.names = FALSE)
+
+write.csv(poverty_df,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/acs_poverty_2019.csv", row.names = FALSE)
+
+write.csv(disability_df,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/acs_disability_2019.csv", row.names = FALSE)
+
+write.csv(insurance_df,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/acs_insurance_2019.csv", row.names = FALSE)
+
+write.csv(birth_df,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/acs_birth_2019.csv", row.names = FALSE)
 ```
 
 
 ##split , California from county column values
-##merge on fips codes for all 5 dfs, write to new csvs 
+##merge on fips codes for all 5 dfs, write to new csv 
