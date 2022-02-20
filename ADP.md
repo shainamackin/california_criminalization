@@ -1,22 +1,13 @@
----
-title: "ADP"
-author: "Shaina Mackin"
-date: "2/20/2022"
-output: github_document
----
+ADP
+================
+Shaina Mackin
+2/20/2022
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(tidyverse)
-library(dplyr)
-library(readxl)
-```
-
-```{r import}
+``` r
 adp_df = read_excel("./data/juvenile_adp.xlsx", col_types = "text") 
 ```
 
-```{r tidy}
+``` r
 adp_girls = adp_df %>%
   janitor::clean_names() %>%
   mutate(
@@ -28,8 +19,4 @@ adp_girls = adp_df %>%
     adp_post_disposition_female = replace(adp_post_disposition_female, adp_post_disposition_female == "u", 0),
   ) %>%
   select(county, year, month, adp_pre_disposition_female, adp_post_disposition_female)
-
-  
-  
 ```
-
