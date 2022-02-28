@@ -32,8 +32,14 @@ adp_girls = adp_df %>%
     adp_pre_disposition_female = as.numeric(adp_pre_disposition_female),
     adp_post_disposition_female = as.numeric(adp_post_disposition_female)) %>%
   mutate(
-    total_female = adp_pre_disposition_female + adp_post_disposition_female
-  )
+    total_female = adp_pre_disposition_female + adp_post_disposition_female) %>%
+    group_by(county, year, month) %>%
+  summarise(
+    adp_pre_disposition_female = sum(adp_pre_disposition_female),
+    adp_post_disposition_female = sum(adp_post_disposition_female),
+    total_female = sum(total_female))
+  
+  
 
   
   
