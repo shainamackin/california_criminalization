@@ -27,7 +27,13 @@ adp_girls = adp_df %>%
      adp_post_disposition_female = replace(adp_post_disposition_female, adp_post_disposition_female == "d", 0),
     adp_post_disposition_female = replace(adp_post_disposition_female, adp_post_disposition_female == "u", 0),
   ) %>%
-  select(county, year, month, adp_pre_disposition_female, adp_post_disposition_female)
+  select(county, year, month, adp_pre_disposition_female, adp_post_disposition_female) %>%
+  mutate(
+    adp_pre_disposition_female = as.numeric(adp_pre_disposition_female),
+    adp_post_disposition_female = as.numeric(adp_post_disposition_female)) %>%
+  mutate(
+    total_female = adp_pre_disposition_female + adp_post_disposition_female
+  )
 
   
   
