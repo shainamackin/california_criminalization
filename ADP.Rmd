@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(dplyr)
 library(readxl)
+library(ggplot2)
 ```
 
 ```{r import}
@@ -37,11 +38,18 @@ adp_girls = adp_df %>%
   summarise(
     adp_pre_disposition_female = sum(adp_pre_disposition_female),
     adp_post_disposition_female = sum(adp_post_disposition_female),
-    total_female = sum(total_female))
+    total_female = sum(total_female)) %>%
+  unite('month_year', month:year, remove = FALSE) %>%
+  mutate(
+    month_year = str_replace(month_year, "_", "\\/")
+  ) 
   
   
+```
 
-  
-  
+```{r chart}
+
+adp_girls_chart = 
+  ggplot(adp_girls)
 ```
 
