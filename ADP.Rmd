@@ -39,17 +39,34 @@ adp_girls = adp_df %>%
     adp_pre_disposition_female = sum(adp_pre_disposition_female),
     adp_post_disposition_female = sum(adp_post_disposition_female),
     total_female = sum(total_female)) %>%
-  unite('month_year', month:year, remove = FALSE) %>%
   mutate(
-    month_year = str_replace(month_year, "_", "\\/")
-  ) 
-  
-  
+    year = as.numeric(unlist(year)),
+    month = as.numeric(unlist(month)),
+    day = "01"
+    ) %>%
+  mutate(
+    month = formatC(as.numeric(month), width=2,format='f',digits = 0, flag='0') 
+  ) %>%
+  select(county, day, month, year, total_female) %>%
+  unite('the_date', day:year, remove = TRUE) %>%
+  mutate(
+    the_date = str_replace(the_date, "_", "\\")
+  ) %>%
+   mutate(
+    the_date = str_replace(the_date, "_", "\\")
+  ) %>%
+  select(county, the_date, total_female) %>%
+  mutate(
+    the_date = lubridate::mdy(the_date)
+  )
+
 ```
 
-```{r chart}
 
-adp_girls_chart = 
-  ggplot(adp_girls)
+```{r chart}
+adp_girls %>%
+  ggplot(aes(x = date, y = total_female, color = county)) +
+  geom_point()
+
 ```
 
