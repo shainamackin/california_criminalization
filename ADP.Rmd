@@ -48,16 +48,15 @@ adp_girls = adp_df %>%
     month = formatC(as.numeric(month), width=2,format='f',digits = 0, flag='0') 
   ) %>%
   select(county, day, month, year, total_female) %>%
-  unite('the_date', day:year, remove = TRUE) %>%
+  unite('the_date', day:year, remove = FALSE) %>%
   mutate(
     the_date = str_replace(the_date, "_", "\\")
   ) %>%
    mutate(
     the_date = str_replace(the_date, "_", "\\")
   ) %>%
-  select(county, the_date, total_female) %>%
   mutate(
-    the_date = lubridate::mdy(the_date)
+    the_date = lubridate::dmy(the_date)
   )
 
 ```
@@ -65,7 +64,8 @@ adp_girls = adp_df %>%
 
 ```{r chart}
 adp_girls %>%
-  ggplot(aes(x = date, y = total_female, color = county)) +
+  filter(year == 2020) %>%
+  ggplot(aes(x = the_date, y = total_female, color = county)) +
   geom_point()
 
 ```
