@@ -82,7 +82,8 @@ mar_2021 = adp_girls %>%
   filter(year == 2021 & month == '03')
 
 plot_jan_2021 = jan_2021 %>%
-  ggplot(aes(x = reorder(county, -total_female), y = total_female, fill = county)) +
+  mutate(ADP = total_female) %>%
+  ggplot(aes(x = reorder(county, -total_female), y = ADP, fill = county)) +
   geom_bar(position="dodge", stat="identity") +
   labs(
     title = "Average Daily Population of Girls in Californian Facilities: Jan 1, 2021",
@@ -91,7 +92,8 @@ plot_jan_2021 = jan_2021 %>%
   theme(axis.text.x=element_text(angle = 90, hjust = 1))
 
 plot_feb_2021 = feb_2021 %>%
-  ggplot(aes(x = reorder(county, -total_female), y = total_female, fill = county)) +
+  mutate(ADP = total_female) %>%
+  ggplot(aes(x = reorder(county, -total_female), y = ADP, fill = county)) +
   geom_bar(position="dodge", stat="identity") +
   labs(
     title = "Average Daily Population of Girls in Californian Facilities: Feb 1, 2021",
@@ -100,7 +102,8 @@ plot_feb_2021 = feb_2021 %>%
   theme(axis.text.x=element_text(angle = 90, hjust = 1))
 
 plot_mar_2021 = mar_2021 %>%
-  ggplot(aes(x = reorder(county, -total_female), y = total_female, fill = county)) +
+  mutate(ADP = total_female) %>%
+  ggplot(aes(x = reorder(county, -total_female), y = ADP, fill = county)) +
   geom_bar(position="dodge", stat="identity") +
   labs(
     title = "Average Daily Population of Girls in Californian Facilities: Mar 1, 2021",
@@ -111,8 +114,8 @@ plot_mar_2021 = mar_2021 %>%
 ```
 
 ```{r plots, echo=FALSE}
-ggplotly(plot_jan_2021)
-ggplotly(plot_feb_2021)
-ggplotly(plot_mar_2021)
+ggplotly(plot_jan_2021, tooltip = c("fill", "y")) 
+ggplotly(plot_feb_2021, tooltip = c("fill", "y"))
+ggplotly(plot_mar_2021, tooltip = c("fill", "y"))
 ```
 
