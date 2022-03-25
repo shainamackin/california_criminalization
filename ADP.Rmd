@@ -1,7 +1,7 @@
 ---
-title: "Girls' Average Daily Population (ADP) Data from the California Board of State and Community Corrections"
-author: "Shaina Mackin, MPH Fellow | Ending Girls' Incarceration | The Vera Institute"
-date: "March 14, 2022"
+title: "CA Girls' Average Daily Population Fact Sheet"
+author: "Shaina Mackin | The Vera Institute"
+date: "March 29, 2022"
 output: html_document
 ---
 
@@ -25,8 +25,6 @@ scale_fill_discrete = scale_fill_viridis_d
 ```{r import, echo = FALSE, message = FALSE, warning = FALSE}
 adp_df = read_excel("./data/juvenile_adp_2002-2021.xlsx", col_types = "text") 
 ```
-
-
 
 ```{r tidy, echo=FALSE, message = FALSE, warning = FALSE}
 adp_girls = adp_df %>%
@@ -73,8 +71,28 @@ adp_girls = adp_df %>%
 write.csv(adp_girls,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/adp_girls.csv")
 ```
 
+```{r annual_adp, echo = FALSE, message = FALSE}
+annual_adp = adp_girls %>%
+  select(county, month, year, total_female) %>%
+  group_by(county, year) %>%
+  summarize(annual = sum(total_female))
 
-```{r months, echo=FALSE, message = FALSE, warning= FALSE}
+annual_2021_plot = annual_adp %>%
+  filter(year == 2021) %>%
+  ggplot(aes(x = reorder(county, -annual), y = annual, fill = annual)) +
+  geom_bar(position="dodge", stat="identity") +
+  labs(
+    title = "Annual Sum of Monthly ADP by CA County, 2021",
+    x = "County",
+    y = "Annual ADP Sum") +
+  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+
+annual_2021_plot
+
+```
+
+
+```{r months, include = FALSE, echo=FALSE, message = FALSE, warning= FALSE}
 jan_2021 = adp_girls %>%
   filter(year == 2021 & month == '01')
 
@@ -116,7 +134,7 @@ plot_mar_2021 = mar_2021 %>%
   
 ```
 
-```{r plots, echo=FALSE}
+```{r plots, include = FALSE, echo=FALSE}
 ggplotly(plot_jan_2021, tooltip = c("fill", "y")) 
 ggplotly(plot_feb_2021, tooltip = c("fill", "y"))
 ggplotly(plot_mar_2021, tooltip = c("fill", "y"))
