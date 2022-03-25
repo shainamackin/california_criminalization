@@ -2,7 +2,7 @@
 title: "CA Girls' Average Daily Population Fact Sheet"
 author: "Shaina Mackin | The Vera Institute"
 date: "March 29, 2022"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, echo=FALSE, message = FALSE, warning = FALSE}
@@ -133,13 +133,6 @@ plot_mar_2021 = mar_2021 %>%
   theme(axis.text.x=element_text(angle = 90, hjust = 1))
   
 ```
-
-```{r plots, include = FALSE, echo=FALSE}
-ggplotly(plot_jan_2021, tooltip = c("fill", "y")) 
-ggplotly(plot_feb_2021, tooltip = c("fill", "y"))
-ggplotly(plot_mar_2021, tooltip = c("fill", "y"))
-```
-
 
 ```{r santa_clara_county, echo = FALSE}
 scc_2020 = adp_girls %>%
