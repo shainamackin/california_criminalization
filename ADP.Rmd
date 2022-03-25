@@ -23,8 +23,10 @@ scale_fill_discrete = scale_fill_viridis_d
 ```
 
 ```{r import, echo = FALSE, message = FALSE, warning = FALSE}
-adp_df = read_excel("./data/juvenile_adp.xlsx", col_types = "text") 
+adp_df = read_excel("./data/juvenile_adp_2002-2021.xlsx", col_types = "text") 
 ```
+
+
 
 ```{r tidy, echo=FALSE, message = FALSE, warning = FALSE}
 adp_girls = adp_df %>%
@@ -68,6 +70,7 @@ adp_girls = adp_df %>%
     the_date = lubridate::dmy(the_date)
   )
 
+write.csv(adp_girls,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/adp_girls.csv")
 ```
 
 
@@ -117,5 +120,27 @@ plot_mar_2021 = mar_2021 %>%
 ggplotly(plot_jan_2021, tooltip = c("fill", "y")) 
 ggplotly(plot_feb_2021, tooltip = c("fill", "y"))
 ggplotly(plot_mar_2021, tooltip = c("fill", "y"))
+```
+
+
+```{r santa_clara_county, echo = FALSE}
+scc_2020 = adp_girls %>%
+  filter(county == "Santa Clara" & year == 2020) %>%
+  mutate(
+    month = as.factor(month),
+    day = as.numeric(day),
+    year = as.numeric(year),
+    ADP = total_female)
+
+scc_2020 %>%
+  ggplot(aes(x = month, y = ADP, fill = month)) +
+  geom_bar(position="dodge", stat="identity") +
+  labs(
+    title = "Average Daily Population of Girls in Santa Clara County Facilities, 2020",
+    x = "Month",
+    y = "ADP") +
+  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+
+
 ```
 
