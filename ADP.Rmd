@@ -81,6 +81,7 @@ annual_2021_plot = annual_adp %>%
   filter(year == 2021) %>%
   ggplot(aes(x = reorder(county, -annual), y = annual, fill = annual)) +
   geom_bar(position="dodge", stat="identity") +
+  theme(legend.position=c(0.9, 0.8)) +
   labs(
     title = "Annual Sum of Monthly ADP by CA County, 2021",
     x = "County",
@@ -88,7 +89,6 @@ annual_2021_plot = annual_adp %>%
   theme(axis.text.x=element_text(angle = 90, hjust = 1))
 
 annual_2021_plot
-
 ```
 
 
@@ -151,14 +151,33 @@ scc_2020 = adp_girls %>%
     ADP = total_female)
 
 scc_2020 %>%
-  ggplot(aes(x = month, y = ADP, fill = month)) +
+  ggplot(aes(x = month, y = ADP, fill = ADP)) +
   geom_bar(position="dodge", stat="identity") +
+    theme(legend.position=c(0.9, 0.8)) +
   labs(
-    title = "Average Daily Population of Girls in Santa Clara County Facilities, 2020",
+    title = "ADP of Girls in Santa Clara County Facilities, 2020",
     x = "Month",
     y = "ADP") +
   theme(axis.text.x=element_text(angle = 90, hjust = 1))
 
+
+scc_2021 = adp_girls %>%
+  filter(county == "Santa Clara" & year == 2021) %>%
+  mutate(
+    month = as.factor(month),
+    day = as.numeric(day),
+    year = as.numeric(year),
+    ADP = total_female)
+
+scc_2021 %>%
+  ggplot(aes(x = month, y = ADP, fill = ADP)) +
+  geom_bar(position="dodge", stat="identity") +
+    theme(legend.position=c(0.9, 0.8)) +
+  labs(
+    title = "ADP of Girls in Santa Clara County Facilities, 2021",
+    x = "Month",
+    y = "ADP") +
+  theme(axis.text.x=element_text(angle = 90, hjust = 1))
 
 ```
 
