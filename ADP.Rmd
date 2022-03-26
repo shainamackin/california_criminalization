@@ -3,8 +3,10 @@ title: 'Criminalization of Girls in California: A Fact Sheet'
 author: "Shaina Mackin | The Vera Institute"
 date: "March 29, 2022"
 output:
-  github_document: default
   pdf_document: default
+  github_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, echo=FALSE, message = FALSE, warning = FALSE}
@@ -15,6 +17,8 @@ library(readxl)
 library(ggplot2)
 library(plotly)
 library(patchwork)
+
+
 
 theme_set(theme_minimal() + theme(legend.position = "bottom"))
 options(
@@ -32,12 +36,11 @@ adp_df = read_excel("./data/juvenile_adp_2002-2021.xlsx", col_types = "text")
 
 <center>
 
-## California is one of the United States' top incarcerators of girls
+# ACROSS THE STATE
 From 2012-2020, **1,122** girls were detained in non-secure facilities and **32,331** in secure facilities.                                    
 **18.4%**	of detentions between 2012-2017 were in secure facilities.
 
-## Top Incarcerating Counties
-</center>
+# TOP INCARCERATING COUNTIES
 
 ```{r top_incarcerators, echo=FALSE}
 County <- c('Los Angeles', 'San Bernadino', 'Ventura', 'Orange', 'Contra Costa', 'Santa Clara', 'Santa Barbara', 'Kern', 'Fresno', 'Mendocino') 
@@ -53,18 +56,28 @@ Percent_Cases <- c('100%','100%','56.7%','49.2%','48.7%','48.4%','47.8%','43.5%'
 most_likely <- data.frame(Counties, Percent_Cases, Frequency)
 
 ```
-    
-    Counties that detained the most girls in 2017:           Counties most likely to detain girls in 2017:
+<br>
+<center>
+## Counties that detained the most girls in 2017: 
+</center>
 
 ```{r, echo=FALSE}
-knitr::kables(
-  list(
-    knitr::kable(top_incarcerators, col.names = c('County', 'Percent of State Total', 'Number Detained'), valign = 't'),
-    knitr::kable(most_likely, col.names = c('County', 'Percent of Cases', 'Number of Times in Top 10'), valign = 't')))
+knitr::kable(top_incarcerators, col.names = c('County', 'Percent of State Total', 'Number Detained'), valign = 't')
+```
+
+<br>
+<center>
+## Counties most likely to detain girls in 2017:
+</center>
+
+```{r, echo=FALSE}
+knitr::kable(most_likely, col.names = c('County', 'Percent of Cases', 'Number of Times in Top 10'), valign = 't')
 ```
 <center>
-## Average Daily Populations
-California's Board of State and Community Corrections (BSCC) reports Average Daily Populations (ADP) of juvenile facilities by county. In 2021, Los Angeles County's annual sum of monthly ADPs was over twice that of Kern's, the second highest.
+
+# AVERAGE DAILY POPULATIONS
+## Statewide by County
+California's Board of State and Community Corrections (BSCC) reports Average Daily Populations (ADP) of juvenile facilities by county. In 2021, LA County's annual sum of monthly ADP counts was over twice that of Kern's, the second highest.
 <br>
 
 ```{r tidy, echo=FALSE, message = FALSE, warning = FALSE}
@@ -112,7 +125,7 @@ adp_girls = adp_df %>%
 write.csv(adp_girls,"/Users/shainamackin/Desktop/Vera/California Criminalization/data/adp_girls.csv")
 ```
 
-```{r annual_adp, echo = FALSE, message = FALSE}
+```{r annual_adp, fig.height=3.2, echo = FALSE, message = FALSE}
 annual_adp = adp_girls %>%
   select(county, month, year, total_female) %>%
   group_by(county, year) %>%
@@ -122,7 +135,7 @@ annual_2021_plot = annual_adp %>%
   filter(year == 2021) %>%
   ggplot(aes(x = reorder(county, -annual), y = annual, fill = annual)) +
   geom_bar(position="dodge", stat="identity") +
-  theme(legend.position=c(0.9, 0.8)) +
+  theme(legend.position=c(0.96, 0.56)) +
   labs(
     title = "Annual Sum of Monthly ADP by CA County, 2021",
     x = "County",
@@ -175,11 +188,10 @@ plot_mar_2021 = mar_2021 %>%
 ```
 <br>
 
-### Zooming in on Santa Clara County
-
+## Zooming in on Santa Clara County 
 In 2020, Santa Clara County's highest ADP (n=**21**) occurred in January, with a steady decline continuing throughout the COVID-19 pandemic. By 2021, even the county's highest ADP, occurring in February, had seen an **81%** decrease (n=**3**).
 
-```{r santa_clara_county, echo = FALSE}
+```{r santa_clara_county, fig.height=4, fig.width=8, echo = FALSE}
 scc_2020 = adp_girls %>%
   filter(county == "Santa Clara" & year == 2020) %>%
   mutate(
