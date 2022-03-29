@@ -112,3 +112,52 @@ in types of detention decisions.
 <br>
 
 ![](ADP_files/figure-gfm/detentions2-1.png)<!-- -->
+
+# SUSTAINED OFFENSES
+
+A list of sustained offenses for girls across California in 2020 in
+descending order of frequency:
+
+| Sustained charge          | Number of cases | Percent of cases |
+|:--------------------------|----------------:|-----------------:|
+| Assault and Battery       |             689 |            24.25 |
+| Other Status Offenses     |             363 |            12.78 |
+| Assault                   |             357 |            12.57 |
+| Petty Theft               |             167 |             5.88 |
+| Theft                     |             134 |             4.72 |
+| Robbery                   |             128 |             4.51 |
+| Motor Vehicle Theft       |             126 |             4.44 |
+| Burglary                  |             118 |             4.15 |
+| Vandalism                 |             113 |             3.98 |
+| Other Misdemeanor         |             105 |             3.70 |
+| Other Felonies            |             102 |             3.59 |
+| Weapons                   |              83 |             2.92 |
+| Other Drugs               |              53 |             1.87 |
+| Drive Under Influence     |              51 |             1.80 |
+| City/County Ordinance     |              39 |             1.37 |
+| Joy Riding                |              34 |             1.20 |
+| Dangerous Drugs           |              29 |             1.02 |
+| Disturbing the Peace      |              29 |             1.02 |
+| Other Theft               |              26 |             0.92 |
+| Hit and Run               |              19 |             0.67 |
+| Trespassing               |              15 |             0.53 |
+| Drunk                     |              13 |             0.46 |
+| Other Sex                 |               6 |             0.21 |
+| Selected Traffic          |               6 |             0.21 |
+| Kidnapping                |               5 |             0.18 |
+| Narcotics                 |               5 |             0.18 |
+| Malicious Mischief        |               4 |             0.14 |
+| Drive Under the Influence |               3 |             0.11 |
+| Lewd or Lascivious        |               3 |             0.11 |
+| Liquor Laws               |               3 |             0.11 |
+| Manslaughter - Misd       |               2 |             0.07 |
+| Manslaughter N/Veh        |               2 |             0.07 |
+| Checks/Access Cards       |               1 |             0.04 |
+| Disorderly Conduct        |               1 |             0.04 |
+| Lewd Conduct              |               1 |             0.04 |
+| Manslaughter - Vehicle    |               1 |             0.04 |
+| Marijuana                 |               1 |             0.04 |
+| Obscene Matter            |               1 |             0.04 |
+| Other Drug Violations     |               1 |             0.04 |
+| Runaway                   |               1 |             0.04 |
+| Truancy                   |               1 |             0.04 |

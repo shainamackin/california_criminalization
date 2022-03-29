@@ -3,8 +3,8 @@ title: 'Criminalization of Girls in California: A Fact Sheet'
 author: "Shaina Mackin | The Vera Institute"
 date: "March 29, 2022"
 output:
-  github_document: default
   pdf_document: default
+  github_document: default
 ---
 
 ```{r setup, echo=FALSE, message = FALSE, warning = FALSE}
@@ -206,7 +206,7 @@ plot1 = scc_2020 %>%
     title = "Santa Clara County ADP, 2020",
     x = "Month",
     y = "ADP") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
+  theme(axis.text.x=element_text(hjust = 1), legend.title = element_blank())
 
 
 scc_2021 = adp_girls %>%
@@ -224,7 +224,7 @@ plot2 = scc_2021 %>%
   labs(
     title = "Santa Clara County ADP, 2021",
     x = "Month") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
+  theme(axis.text.x=element_text(hjust = 1), legend.title = element_blank())
 
 plot1 + plot2
 
@@ -253,7 +253,7 @@ arrest_county = arrest_df %>%
     title = "      Girls' Arrest Rates by County, 2020",
     x = "County",
     y = "Arrest Rate (per 100,000)") +
-  theme(axis.text.x=element_text(angle = 45, hjust = 1), legend.title = element_blank()) +
+  theme(axis.text.x=element_text(hjust = 1), legend.title = element_blank()) +
   coord_flip()
 
 arrest_county 
@@ -291,7 +291,7 @@ status_county
 The California Juvenile Court and Probation Statistical System (JCPSS) reports data on the proportion of cases within racial groups that result in types of detention decisions.
 
 <br>
-```{r detentions, include = FALSE, message = FALSE, warning = FALSE, fig.height=8, fig.width=9}
+```{r detentions, include = FALSE, message = FALSE, warning = FALSE, fig.height=9, fig.width=9}
 detention_df = read_csv("/Users/shainamackin/Desktop/Vera/California Criminalization/data/statewide detention by race.csv") %>%
   select(prop.col.y, prop.col.Freq, prop.tbl.x) %>%
   drop_na() %>%
@@ -313,7 +313,7 @@ ggplot(detention_df, aes(x = reorder(race, -proportion), y = proportion, fill = 
     title = "Statewide Detention Profiles by Race, 2020",
     x = "Detainment Decision",
     y = "Proportion") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
+  theme(axis.text.x=element_text(hjust = 1), legend.title = element_blank())
 ```
 <br>
 
@@ -327,7 +327,21 @@ ggplot(detention_df, aes(x = reorder(detainment, proportion), y = proportion, fi
     title = "  Statewide Detention Profiles by Race, 2020",
     x = "Detainment Decision",
     y = "Proportion") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank()) 
+  theme(axis.text.x=element_text(hjust = 1), legend.title = element_blank()) 
+```
+
+\newpage
+
+# SUSTAINED OFFENSES
+
+Sustained offenses for girls across California in 2020, in descending order of frequency: 
+```{r charges, echo = FALSE, message = FALSE, warning = FALSE, fig.height=4, fig.width=8}
+charge_df = read_csv("/Users/shainamackin/Desktop/Vera/California Criminalization/data/tmp_2020girls_sustained_offenses.csv") %>%
+  select(-...4) %>%
+  drop_na()
+
+knitr::kable(charge_df)
+
 ```
 
 
