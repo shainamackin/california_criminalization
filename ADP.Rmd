@@ -229,4 +229,58 @@ plot2 = scc_2021 %>%
 plot1 + plot2
 
 ```
+
+# DETENTION PROFILES
+
+The California Juvenile Court and Probation Statistical System (JCPSS) reports data on the proportion of cases within racial groups that result in types of detention decisions.
+
+<br>
+
+```{r detentions, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=9}
+detention_df = read_csv("/Users/shainamackin/Desktop/Vera/California Criminalization/data/statewide detention by race.csv") %>%
+  select(prop.col.y, prop.col.Freq, prop.tbl.x) %>%
+  drop_na() %>%
+  janitor::clean_names() %>%
+  mutate(
+    race = prop_col_y,
+    detainment = prop_tbl_x,
+    proportion = prop_col_freq) %>%
+  mutate(
+    detainment = replace(detainment, detainment == 'Detained - Home Supervision', 'Home Supervision'),
+    detainment = replace(detainment, detainment == 'Detained - Non-Secure Facility', 'Non-Secure Facility'),
+      detainment = replace(detainment, detainment == 'Detained - Secure Facility', 'Secure Facility')) %>%
+  select(-prop_col_y, -prop_tbl_x, -prop_col_freq)
+
+ggplot(detention_df, aes(x = reorder(detainment, proportion), y = proportion, fill = detainment)) +
+  geom_bar(stat='identity',position="dodge") +
+  coord_flip() +
+  facet_wrap(~race, ncol=4) + 
+    labs(
+    title = "Statewide Detention Profiles by Race, 2020",
+    x = "Detainment Decision",
+    y = "Proportion") +
+  theme(axis.text.x=element_text(angle = 90, hjust = 1)) +
+  geom_text(aes(label=sprintf("%0.0f", round(proportion))))
+```
+
+
+```{r detentions2, include = FALSE, message = FALSE, warning = FALSE, fig.height=8, fig.width=9}
+ggplot(detention_df, aes(x = reorder(race, -proportion), y = proportion, fill = race)) +
+  geom_bar(stat='identity',position="dodge") +
+  facet_wrap(~detainment, ncol=1) + 
+    labs(
+    title = "Statewide Detention Profiles by Race, 2020",
+    x = "Detainment Decision",
+    y = "Proportion") +
+  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+```
+
+
+```{r arrests}
+
+```
+
  
