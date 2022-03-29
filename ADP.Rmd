@@ -135,10 +135,10 @@ annual_2021_plot = annual_adp %>%
   geom_bar(position="dodge", stat="identity") +
   theme(legend.position=c(0.96, 0.56)) +
   labs(
-    title = "Annual Sum of Monthly ADP by CA County, 2021",
+    title = "   Annual Sum of Monthly ADP by CA County, 2021",
     x = "County",
     y = "Annual ADP Sum") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
 
 annual_2021_plot
 ```
@@ -181,13 +181,13 @@ plot_mar_2021 = mar_2021 %>%
     title = "Average Daily Population of Girls in Californian Facilities: Mar 1, 2021",
     x = "County",
     y = "ADP") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
   
 ```
 <br>
 
 ## Zooming in on Santa Clara County 
-In 2020, Santa Clara County's highest ADP (n=**21**) occurred in January, with a steady decline continuing throughout the COVID-19 pandemic. By 2021, even the county's highest ADP, occurring in February, had seen an **81%** decrease (n=**3**).
+In 2020, Santa Clara County's highest ADP (n=**21**) occurred in January, with a steady decline continuing throughout the COVID-19 pandemic. By 2021, even the county's highest ADP, occurring in February, had seen an **81%** decrease (n=**4**).
 
 ```{r santa_clara_county, fig.height=4, fig.width=8, echo = FALSE}
 scc_2020 = adp_girls %>%
@@ -206,7 +206,7 @@ plot1 = scc_2020 %>%
     title = "Santa Clara County ADP, 2020",
     x = "Month",
     y = "ADP") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
 
 
 scc_2021 = adp_girls %>%
@@ -224,10 +224,66 @@ plot2 = scc_2021 %>%
   labs(
     title = "Santa Clara County ADP, 2021",
     x = "Month") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
 
 plot1 + plot2
 
+```
+
+# ARREST RATES
+
+In 2020, Sierra County had the highest arrest rate of girls per 100,000 population (n=**6610.99**); Sutter County had the lowest (n=**0**). The top 10 counties with highest girls' arrest rates in 2020 are displayed below:
+<br>
+```{r arrests, echo = FALSE, message = FALSE, warning = FALSE, fig.height=4, fig.width=8}
+arrest_df = read_csv("/Users/shainamackin/Desktop/Vera/California Criminalization/data/2020 girls arrest rates by county.csv") %>%
+  janitor::clean_names() %>%
+  mutate(
+    arrest_rate = arr_rate) %>%
+  mutate(
+    county = str_replace(county, " County", " "))
+
+arrest_county = arrest_df %>%
+  drop_na(arrest_rate) %>%
+  arrange(desc(arrest_rate))%>%
+  head(10)%>%
+  ggplot(aes(x = reorder(county, arrest_rate), y = arrest_rate, fill = arrest_rate)) +
+  geom_bar(position="dodge", stat="identity") +
+    theme(legend.position=c(0.9, 0.3)) +
+  labs(
+    title = "      Girls' Arrest Rates by County, 2020",
+    x = "County",
+    y = "Arrest Rate (per 100,000)") +
+  theme(axis.text.x=element_text(angle = 45, hjust = 1), legend.title = element_blank()) +
+  coord_flip()
+
+arrest_county 
+  
+```
+
+<br>
+
+<br>
+
+## Status Offenses 
+
+A status offense is an offense that would not be considered a crime if committed by an adult. Common status offenses include truancy, running away, violating curfew, or possessing substances (BSCC). Nevada County had the highest status offense rate per 100,000 girls in 2020 (n=**738.15**). The top 10 counties with highest girls' status offense arrest rates in 2020 are displayed below.
+
+```{r arrests2, echo = FALSE, message = FALSE, warning = FALSE, fig.height=4, fig.width=8}
+status_county = arrest_df %>%
+  drop_na(status_rate) %>%
+  arrange(desc(status_rate))%>%
+  head(10) %>%
+  ggplot(aes(x = reorder(county, status_rate), y = status_rate, fill = status_rate)) +
+  geom_bar(position="dodge", stat="identity") +
+    theme(legend.position=c(0.9, 0.3)) +
+  labs(
+    title = "      Girls' Status Offense Arrest Rates by County, 2020",
+    x = "County",
+    y = "Status Offense Arrest Rate (per 100,000)") +
+  theme(axis.text.x=element_text(hjust = 1), legend.title = element_blank()) +
+  coord_flip()
+
+status_county
 ```
 
 # DETENTION PROFILES
@@ -235,8 +291,7 @@ plot1 + plot2
 The California Juvenile Court and Probation Statistical System (JCPSS) reports data on the proportion of cases within racial groups that result in types of detention decisions.
 
 <br>
-
-```{r detentions, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=9}
+```{r detentions, include = FALSE, message = FALSE, warning = FALSE, fig.height=8, fig.width=9}
 detention_df = read_csv("/Users/shainamackin/Desktop/Vera/California Criminalization/data/statewide detention by race.csv") %>%
   select(prop.col.y, prop.col.Freq, prop.tbl.x) %>%
   drop_na() %>%
@@ -251,20 +306,6 @@ detention_df = read_csv("/Users/shainamackin/Desktop/Vera/California Criminaliza
       detainment = replace(detainment, detainment == 'Detained - Secure Facility', 'Secure Facility')) %>%
   select(-prop_col_y, -prop_tbl_x, -prop_col_freq)
 
-ggplot(detention_df, aes(x = reorder(detainment, proportion), y = proportion, fill = detainment)) +
-  geom_bar(stat='identity',position="dodge") +
-  coord_flip() +
-  facet_wrap(~race, ncol=4) + 
-    labs(
-    title = "Statewide Detention Profiles by Race, 2020",
-    x = "Detainment Decision",
-    y = "Proportion") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1)) +
-  geom_text(aes(label=sprintf("%0.0f", round(proportion))))
-```
-
-
-```{r detentions2, include = FALSE, message = FALSE, warning = FALSE, fig.height=8, fig.width=9}
 ggplot(detention_df, aes(x = reorder(race, -proportion), y = proportion, fill = race)) +
   geom_bar(stat='identity',position="dodge") +
   facet_wrap(~detainment, ncol=1) + 
@@ -272,17 +313,21 @@ ggplot(detention_df, aes(x = reorder(race, -proportion), y = proportion, fill = 
     title = "Statewide Detention Profiles by Race, 2020",
     x = "Detainment Decision",
     y = "Proportion") +
-  theme(axis.text.x=element_text(angle = 90, hjust = 1))
+  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank())
 ```
 <br>
 
 
-<br>
-<br>
-<br>
-
-# ARREST RATES
-
-```{r arrests, echo = FALSE, message = FALSE, warning = FALSE}
+```{r detentions2, echo = FALSE, message = FALSE, warning = FALSE, fig.height=10, fig.width=9}
+ggplot(detention_df, aes(x = reorder(detainment, proportion), y = proportion, fill = detainment)) +
+  geom_bar(stat='identity',position="dodge") +
+  coord_flip() +
+  facet_wrap(~race, ncol=4) + 
+    labs(
+    title = "  Statewide Detention Profiles by Race, 2020",
+    x = "Detainment Decision",
+    y = "Proportion") +
+  theme(axis.text.x=element_text(angle = 90, hjust = 1), legend.title = element_blank()) 
 ```
+
 
