@@ -3,8 +3,8 @@ title: 'Criminalization of Girls in California: A Fact Sheet'
 author: "Shaina Mackin | The Vera Institute"
 date: "March 29, 2022"
 output:
-  pdf_document: default
   github_document: default
+  pdf_document: default
 ---
 
 ```{r setup, echo=FALSE, message = FALSE, warning = FALSE}

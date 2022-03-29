@@ -7,22 +7,20 @@ March 29, 2022
 
 <center>
 
-## California is one of the United States’ top incarcerators of girls
+# ACROSS THE STATE
 
 From 2012-2020, **1,122** girls were detained in non-secure facilities
 and **32,331** in secure facilities.  
 **18.4%** of detentions between 2012-2017 were in secure facilities.
 
-## Top Incarcerating Counties
+# TOP INCARCERATING COUNTIES
+
+<br>
+<center>
+
+## Counties that detained the most girls in 2017:
 
 </center>
-
-    Counties that detained the most girls in 2017:           Counties most likely to detain girls in 2017:
-
-<table class="kable_wrapper">
-<tbody>
-<tr>
-<td>
 
 | County        | Percent of State Total | Number Detained |
 |:--------------|:-----------------------|----------------:|
@@ -37,8 +35,12 @@ and **32,331** in secure facilities.
 | Fresno        | 3.5%                   |             162 |
 | Mendocino     | 3.3%                   |             153 |
 
-</td>
-<td>
+<br>
+<center>
+
+## Counties most likely to detain girls in 2017:
+
+</center>
 
 | County          | Percent of Cases | Number of Times in Top 10 |
 |:----------------|:-----------------|--------------------------:|
@@ -53,28 +55,60 @@ and **32,331** in secure facilities.
 | Santa Clara     | 41.6%            |                         2 |
 | San Luis Obispo | 41.1%            |                        NA |
 
-</td>
-</tr>
-</tbody>
-</table>
 <center>
 
-## Average Daily Populations
+# AVERAGE DAILY POPULATIONS
+
+## Statewide by County
 
 California’s Board of State and Community Corrections (BSCC) reports
 Average Daily Populations (ADP) of juvenile facilities by county. In
-2021, Los Angeles County’s annual sum of monthly ADPs was over twice
-that of Kern’s, the second highest. <br>
+2021, LA County’s annual sum of monthly ADP counts was over twice that
+of Kern’s, the second highest. <br>
 
 ![](ADP_files/figure-gfm/annual_adp-1.png)<!-- -->
 
 <br>
 
-### Zooming in on Santa Clara County
+## Zooming in on Santa Clara County
 
 In 2020, Santa Clara County’s highest ADP (n=**21**) occurred in
 January, with a steady decline continuing throughout the COVID-19
 pandemic. By 2021, even the county’s highest ADP, occurring in February,
-had seen an **81%** decrease (n=**3**).
+had seen an **81%** decrease (n=**4**).
 
 ![](ADP_files/figure-gfm/santa_clara_county-1.png)<!-- -->
+
+# ARREST RATES
+
+In 2020, Sierra County had the highest arrest rate of girls per 100,000
+population (n=**6610.99**); Sutter County had the lowest (n=**0**). The
+top 10 counties with highest girls’ arrest rates in 2020 are displayed
+below: <br> ![](ADP_files/figure-gfm/arrests-1.png)<!-- -->
+
+<br>
+
+<br>
+
+## Status Offenses
+
+A status offense is an offense that would not be considered a crime if
+committed by an adult. Common status offenses include truancy, running
+away, violating curfew, or possessing substances (BSCC). Nevada County
+had the highest status offense rate per 100,000 girls in 2020
+(n=**738.15**). The top 10 counties with highest girls’ status offense
+arrest rates in 2020 are displayed below.
+
+![](ADP_files/figure-gfm/arrests2-1.png)<!-- -->
+
+# DETENTION PROFILES
+
+The California Juvenile Court and Probation Statistical System (JCPSS)
+reports data on the proportion of cases within racial groups that result
+in types of detention decisions.
+
+<br>
+
+<br>
+
+![](ADP_files/figure-gfm/detentions2-1.png)<!-- -->
