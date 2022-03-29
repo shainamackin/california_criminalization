@@ -274,13 +274,15 @@ ggplot(detention_df, aes(x = reorder(race, -proportion), y = proportion, fill = 
     y = "Proportion") +
   theme(axis.text.x=element_text(angle = 90, hjust = 1))
 ```
+<br>
 
-```{r}
+
+<br>
+<br>
+<br>
+
+# ARREST RATES
+
+```{r arrests, echo = FALSE, message = FALSE, warning = FALSE}
 ```
 
-
-```{r arrests}
-
-```
-
- 
